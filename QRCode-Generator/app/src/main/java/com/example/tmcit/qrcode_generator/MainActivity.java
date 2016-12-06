@@ -45,29 +45,16 @@ public class MainActivity extends AppCompatActivity {
     EditText editText_start;
     EditText editText_destination;
 
-
     public static int destinationId;//目的地場所ID
     public static int ceilingLightId;//天井照明ID
     public static String language;//地図の言語
-
     public static Direction direction;//経路情報
     List<Route> route;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
-
-
-
-
 
         imageView1 = (ImageView)findViewById(R.id.imageView);
         editText = (EditText) findViewById(R.id.editText);
@@ -75,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         editText_destination = (EditText) findViewById(R.id.editText_destination);
 
         viewQR(cnt);
-
         Button btn_m = (Button)findViewById(R.id.button);
         btn_m.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -88,47 +74,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
         Button btn_p = (Button)findViewById(R.id.button2);
         btn_p.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 editText.selectAll();
-                // エディットテキストのテキストを取得します
+                // エディットテキストのテキストを取得
                 String text = editText.getText().toString();
                 cnt = Integer.valueOf(text);
                 cnt++;
-
-
                 viewQR(cnt);
             }
         });
-
 
         Button btn_n = (Button)findViewById(R.id.button3);
         btn_n.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
                 editText.selectAll();
-                // エディットテキストのテキストを取得します
+                // エディットテキストのテキストを取得
                 String text = editText.getText().toString();
-
                 cnt = Integer.valueOf(text);
                 viewQR(cnt);
             }
         });
-
-
-
-
-
 
         Button btn_prev = (Button)findViewById(R.id.button_prev);
         btn_prev.setOnClickListener(new View.OnClickListener() {
@@ -136,14 +104,11 @@ public class MainActivity extends AppCompatActivity {
                 if(route_flag == 1 && lightnum != 0){
                     lightnum--;
                     viewQR(route.get(0).steps.get(lightnum).start.lightId);
-
                 }else{
                     Toast.makeText(MainActivity.this,"エラー:出発地です。", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
         Button btn_next = (Button)findViewById(R.id.button_next);
         btn_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -154,12 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(MainActivity.this,"エラー:目的地です。", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
-
-
 
         Button btn_generate = (Button)findViewById(R.id.button_generate);
         btn_generate.setOnClickListener(new View.OnClickListener() {
@@ -197,14 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
     }
-
-
 
     private Bitmap createQRCode(String contents)
     {
@@ -216,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     BarcodeFormat.QR_CODE,
                     300,
                     300);
-
             qrBitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ARGB_8888);
             qrBitmap.setPixels(this.createDot(qrBitMatrix), 0, 300, 0, 0, 300, 300);
         }
@@ -230,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
             return qrBitmap;
         }
     }
-
     // ドット単位の判定
     private int[] createDot(BitMatrix qrBitMatrix)
     {
